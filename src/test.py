@@ -4,6 +4,7 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 
 
 segments = [ 63, 6, 91, 79, 102, 109, 125, 7, 127, 111 ]
+// acomodar y convertir binario a decimal
 
 @cocotb.test()
 async def test_7seg(dut):
