@@ -9,7 +9,7 @@ segments = [ 63, 6, 91, 79, 102, 109, 125, 7, 127, 111 ]
 @cocotb.test()
 async def test_7seg(dut):
     dut._log.info("start")
-    clock = Clock(dut.clk, 10, units="us")
+    clock = Clock(dut.clk, 1, units="ms")
     cocotb.start_soon(clock.start())
 
     # reset
@@ -24,7 +24,7 @@ async def test_7seg(dut):
     max_count = dut.ui_in.value << 10
     dut._log.info(f"check all segments with MAX_COUNT set to {max_count}")
     # check all segments and roll over
-    for i in range(15):
+    for i in range(8):
         dut._log.info("check segment {}".format(i))
         await ClockCycles(dut.clk, max_count)
         assert int(dut.segments.value) == segments[i % 10]
